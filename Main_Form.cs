@@ -1,4 +1,5 @@
 ﻿using Airline.exception;
+using Airline.model.dto.request;
 using Airline.service;
 
 namespace Airline
@@ -94,7 +95,7 @@ namespace Airline
 
         private void in24HoursButton_Click(object sender, EventArgs e)
         {
-            Flights_Info_Form fi = new Flights_Info_Form(_flightService.ShowIn24Hours());
+            var fi = new Flights_Info_Form(_flightService.ShowIn24Hours());
             fi.ShowDialog();
         }
 
@@ -105,12 +106,15 @@ namespace Airline
 
         private void searchButton2_Click(object sender, EventArgs e)
         {
-            String text = "233, Baku, 34, active";
-            //Flights_Info_Form fi = new Flights_Info_Form(text);
-            //fi.ShowDialog();
-            comboBoxCities.Text = "";
-            dtimeSearch.Text = "";
-            numberOfPeople.Value = 1;
+            var flightSearchRequest = new FlightSearchRequest
+            (
+                originPoint.Text,
+                destPoint.Text,
+                DateOnly.FromDateTime(dtimeSearch.Value),
+                (int)numberOfPeople.Value
+            );
+            var fi = new Flights_Info_Form(_flightService.SearchFlights(flightSearchRequest));
+            fi.ShowDialog();
         }
 
         private void myFlightsButton_Click(object sender, EventArgs e)

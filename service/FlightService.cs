@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Airline.domain;
-using Airline.domain.entity;
+﻿using Airline.domain;
 using Airline.exception;
 using Airline.mapper;
 using Airline.model.dto;
@@ -35,9 +33,9 @@ namespace Airline.service
 
         public List<FlightDto> SearchFlights(FlightSearchRequest request)
         {
-            var startOfDay = request.Date.ToDateTime(TimeOnly.MinValue, DateTimeKind.Utc);
-            var endOfDay = startOfDay.AddDays(1);
-
+            var startOfDay = request.Date.ToDateTime(new TimeOnly(0, 0), DateTimeKind.Utc);
+            var endOfDay = request.Date.ToDateTime(new TimeOnly(23, 59, 59), DateTimeKind.Utc);
+            
             return _context.Flights
                 .Where(f => f.OriginPoint == request.OriginPoint &&
                             f.DestPoint == request.DestPoint &&

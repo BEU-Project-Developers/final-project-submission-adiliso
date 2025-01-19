@@ -34,7 +34,9 @@ namespace Airline
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             tabPageSearchBook = new TabPage();
-            comboBoxCities = new ComboBox();
+            originPoint = new ComboBox();
+            label1 = new Label();
+            destPoint = new ComboBox();
             numberOfPeople = new NumericUpDown();
             dtimeSearch = new DateTimePicker();
             searchButton2 = new Button();
@@ -72,7 +74,9 @@ namespace Airline
             // 
             // tabPageSearchBook
             // 
-            tabPageSearchBook.Controls.Add(comboBoxCities);
+            tabPageSearchBook.Controls.Add(originPoint);
+            tabPageSearchBook.Controls.Add(label1);
+            tabPageSearchBook.Controls.Add(destPoint);
             tabPageSearchBook.Controls.Add(numberOfPeople);
             tabPageSearchBook.Controls.Add(dtimeSearch);
             tabPageSearchBook.Controls.Add(searchButton2);
@@ -83,23 +87,43 @@ namespace Airline
             tabPageSearchBook.Margin = new Padding(0);
             tabPageSearchBook.Name = "tabPageSearchBook";
             tabPageSearchBook.Padding = new Padding(0, 10, 10, 10);
-            tabPageSearchBook.Size = new Size(192, 32);
+            tabPageSearchBook.Size = new Size(894, 293);
             tabPageSearchBook.TabIndex = 2;
-            tabPageSearchBook.Text = "     Search-book    ";
+            tabPageSearchBook.Text = "     Search-flights   ";
             tabPageSearchBook.UseVisualStyleBackColor = true;
             // 
-            // comboBoxCities
+            // originPoint
             // 
-            comboBoxCities.FormattingEnabled = true;
-            comboBoxCities.Items.AddRange(new object[] { "Baku", "Istanbul" });
-            comboBoxCities.Location = new Point(382, 43);
-            comboBoxCities.Name = "comboBoxCities";
-            comboBoxCities.Size = new Size(180, 39);
-            comboBoxCities.TabIndex = 13;
+            originPoint.FormattingEnabled = true;
+            originPoint.Items.AddRange(new object[] { "Baku", "Istanbul", "Ankara", "New York", "Moscow", "Berlin", "Paris", "Madrid" });
+            originPoint.Location = new Point(384, 39);
+            originPoint.Name = "originPoint";
+            originPoint.Size = new Size(180, 39);
+            originPoint.TabIndex = 15;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label1.Location = new Point(60, 52);
+            label1.Name = "label1";
+            label1.Size = new Size(209, 31);
+            label1.TabIndex = 14;
+            label1.Text = "Enter origin point :";
+            // 
+            // destPoint
+            // 
+            destPoint.FormattingEnabled = true;
+            destPoint.Items.AddRange(new object[] { "Baku", "Istanbul", "Ankara", "New York", "Moscow", "Berlin", "Paris", "Madrid" });
+            destPoint.Location = new Point(384, 97);
+            destPoint.Name = "destPoint";
+            destPoint.Size = new Size(180, 39);
+            destPoint.TabIndex = 13;
             // 
             // numberOfPeople
             // 
-            numberOfPeople.Location = new Point(382, 168);
+            numberOfPeople.Location = new Point(384, 228);
+            numberOfPeople.Maximum = new decimal(new int[] { 300, 0, 0, 0 });
             numberOfPeople.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numberOfPeople.Name = "numberOfPeople";
             numberOfPeople.Size = new Size(79, 39);
@@ -113,7 +137,7 @@ namespace Airline
             dtimeSearch.CustomFormat = "dd MMM yyyy";
             dtimeSearch.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
             dtimeSearch.Format = DateTimePickerFormat.Custom;
-            dtimeSearch.Location = new Point(382, 107);
+            dtimeSearch.Location = new Point(384, 161);
             dtimeSearch.Name = "dtimeSearch";
             dtimeSearch.Size = new Size(180, 38);
             dtimeSearch.TabIndex = 11;
@@ -124,7 +148,7 @@ namespace Airline
             searchButton2.Cursor = Cursors.Hand;
             searchButton2.FlatStyle = FlatStyle.Flat;
             searchButton2.ForeColor = SystemColors.Control;
-            searchButton2.Location = new Point(632, 133);
+            searchButton2.Location = new Point(634, 187);
             searchButton2.Name = "searchButton2";
             searchButton2.Size = new Size(164, 70);
             searchButton2.TabIndex = 10;
@@ -136,7 +160,7 @@ namespace Airline
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label4.Location = new Point(58, 182);
+            label4.Location = new Point(60, 236);
             label4.Name = "label4";
             label4.Size = new Size(218, 31);
             label4.TabIndex = 8;
@@ -146,7 +170,7 @@ namespace Airline
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label3.Location = new Point(58, 117);
+            label3.Location = new Point(60, 171);
             label3.Name = "label3";
             label3.Size = new Size(138, 31);
             label3.TabIndex = 6;
@@ -156,7 +180,7 @@ namespace Airline
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(58, 56);
+            label2.Location = new Point(60, 110);
             label2.Name = "label2";
             label2.Size = new Size(263, 31);
             label2.TabIndex = 4;
@@ -170,7 +194,7 @@ namespace Airline
             tabInfoPage.Location = new Point(4, 64);
             tabInfoPage.Margin = new Padding(0);
             tabInfoPage.Name = "tabInfoPage";
-            tabInfoPage.Size = new Size(192, 32);
+            tabInfoPage.Size = new Size(894, 293);
             tabInfoPage.TabIndex = 1;
             tabInfoPage.Text = "     Flight Info     ";
             tabInfoPage.UseVisualStyleBackColor = true;
@@ -215,7 +239,7 @@ namespace Airline
             tabBoardPage.Location = new Point(4, 64);
             tabBoardPage.Margin = new Padding(0);
             tabBoardPage.Name = "tabBoardPage";
-            tabBoardPage.Size = new Size(894, 235);
+            tabBoardPage.Size = new Size(894, 293);
             tabBoardPage.TabIndex = 0;
             tabBoardPage.Text = "    Online board     ";
             tabBoardPage.UseVisualStyleBackColor = true;
@@ -262,7 +286,7 @@ namespace Airline
             tabControl1.Name = "tabControl1";
             tabControl1.Padding = new Point(0, 0);
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(902, 303);
+            tabControl1.Size = new Size(902, 361);
             tabControl1.TabIndex = 0;
             // 
             // fileSystemWatcher1
@@ -388,9 +412,11 @@ namespace Airline
         private PictureBox pictureBox2;
         private DateTimePicker dtimeSearch;
         private NumericUpDown numberOfPeople;
-        private ComboBox comboBoxCities;
+        private ComboBox destPoint;
         private Fisrt_Tab_Control fisrt_Tab_Control2;
         private BindingSource bindingSource1;
         private ToolTip toolTipMain;
+        private ComboBox originPoint;
+        private Label label1;
     }
 }

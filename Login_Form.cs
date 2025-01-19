@@ -1,5 +1,6 @@
 ﻿using Airline.model.dto.request;
 using Airline.service;
+using static Airline.FormsHelper;
 
 namespace Airline
 {
@@ -8,9 +9,9 @@ namespace Airline
         public Login_Form()
         {
             InitializeComponent();
-            FormsHelper.RoundItems([loginPanel], 60);
-            FormsHelper.RoundItems([loginButton], 40);
-            FormsHelper.RoundItems([btnSignUp2], 30);
+            RoundItems([loginPanel], 60);
+            RoundItems([loginButton], 40);
+            RoundItems([btnSignUp2], 30);
 
             toolTipLogin.SetToolTip(loginButton, "Click to login to your account");
             toolTipLogin.SetToolTip(btnSignUp2, "Click to go sign up form");
@@ -19,35 +20,33 @@ namespace Airline
         private void button2_Click(object sender, EventArgs e)
         {
             Hide();
-            SignUp_Form signUpForm = new SignUp_Form();
+            var signUpForm = new SignUp_Form();
             signUpForm.FormClosed += (s, args) => Close();
             signUpForm.ShowDialog();
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            // PassengerService passengerService = new();
-            //
-            // var request = new PassengerLoginRequest
-            // {
-            //     Username = textBox2.Text,
-            //     Password = textBox3.Text
-            // };
-            //
-            // try
-            // {
-            //     passengerService.Login(request);
-            // }
-            // catch (Exception exception)
-            // {
-            //     MessageBox.Show(exception.Message);
-            //     textBox2.Text = string.Empty;
-            //     textBox3.Text = string.Empty;
-            //     return;
-            // }
+            PassengerService passengerService = new();
+
+            var request = new PassengerLoginRequest
+            {
+                Username = textBox2.Text,
+                Password = textBox3.Text
+            };
+
+            try
+            {
+                CURRENT_PASSENGER = passengerService.Login(request);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
 
             Hide();
-            Main_Form mainForm = new Main_Form();
+            var mainForm = new Main_Form();
             mainForm.FormClosed += (s, args) => Close();
             mainForm.ShowDialog();
         }

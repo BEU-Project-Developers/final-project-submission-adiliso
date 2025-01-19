@@ -18,30 +18,23 @@ namespace Airline
 
         private void SignUp_Form_Load(object sender, EventArgs e)
         {
-
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
-
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Hide();
-            Login_Form login_Form = new Login_Form();
-            login_Form.FormClosed += (s, args) => Close();
-            login_Form.ShowDialog();
+            GoToLoginForm();
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-
             PassengerService passengerService = new();
 
             var name = textBox1.Text;
@@ -59,7 +52,7 @@ namespace Airline
 
             try
             {
-                var response = passengerService.Create(request);
+                passengerService.Create(request);
                 MessageBox.Show("Account created successfully!");
             }
             catch (Exception ex)
@@ -68,21 +61,25 @@ namespace Airline
                 return;
             }
 
-            Hide();
-            Main_Form main_Form = new Main_Form();
-            main_Form.FormClosed += (s, args) => Close();
-            main_Form.ShowDialog();
+            GoToLoginForm();
         }
 
         private void toolTipSignUp_Popup(object sender, PopupEventArgs e)
         {
-
         }
 
         private void showPassword_CheckedChanged(object sender, EventArgs e)
         {
             textBox3.UseSystemPasswordChar = !showPassword.Checked;
             textBox4.UseSystemPasswordChar = !showPassword.Checked;
+        }
+
+        private void GoToLoginForm()
+        {
+            Hide();
+            var loginForm = new Login_Form();
+            loginForm.FormClosed += (s, args) => Close();
+            loginForm.ShowDialog();
         }
     }
 }

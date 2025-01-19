@@ -13,9 +13,10 @@ public class PassengerService
 
     private readonly PassengerMapper _mapper = new();
 
-
     public PassengerDto Create(PassengerCreateRequest request)
     {
+        Validator.ValidateObject(request, new ValidationContext(request), true);
+
         if (ExistsByUsername(request.Username))
             throw new AlreadyExistsException($"Username already exists with username: {request.Username}");
 

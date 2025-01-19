@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing.Drawing2D;
+using Airline.model.dto;
 
 namespace Airline
 {
-    internal class FormsHelper
+    public class FormsHelper
     {
+        public static PassengerDto CURRENT_PASSENGER = null;
+
         public static void RoundItems(List<Control> items, int radius)
         {
             foreach (var item in items)
@@ -16,7 +14,8 @@ namespace Airline
                 item.Region = new Region(CreateRoundedRectanglePath(item.ClientRectangle, radius));
             }
         }
-        public static GraphicsPath CreateRoundedRectanglePath(Rectangle rect, int radius)
+
+        private static GraphicsPath CreateRoundedRectanglePath(Rectangle rect, int radius)
         {
             GraphicsPath path = new GraphicsPath();
             path.AddArc(rect.Left, rect.Top, radius, radius, 180, 90);
@@ -25,6 +24,13 @@ namespace Airline
             path.AddArc(rect.Left, rect.Bottom - radius, radius, radius, 90, 90);
             path.CloseFigure();
             return path;
+        }
+        
+        public static void ShowInfoForm<T>(List<T> items)
+        {
+            var fi = new Info_Form();
+            fi.ShowInfo(items);
+            fi.ShowDialog();
         }
     }
 }

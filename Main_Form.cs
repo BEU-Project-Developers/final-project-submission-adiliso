@@ -7,6 +7,7 @@ namespace Airline
     public partial class Main_Form : Form
     {
         private readonly FlightService _flightService = new();
+        private readonly BookingService _bookingService = new();
 
         public Main_Form()
         {
@@ -21,7 +22,8 @@ namespace Airline
                 in24button,
                 myFlightsButton,
                 searchButton1,
-                searchButton2
+                searchButton2,
+                createBooking
             ], 30);
 
             toolTipMain.SetToolTip(in24button, "Click to get fligts in next 24 hours");
@@ -31,6 +33,8 @@ namespace Airline
 
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += TabControl1_DrawItem;
+
+            if (FormsHelper.CURRENT_PASSENGER != null) accountLabel.Text = FormsHelper.CURRENT_PASSENGER.Username;
         }
 
         private void TabControl1_DrawItem(object sender, DrawItemEventArgs e)
@@ -95,8 +99,7 @@ namespace Airline
 
         private void in24HoursButton_Click(object sender, EventArgs e)
         {
-            var fi = new Flights_Info_Form(_flightService.ShowIn24Hours());
-            fi.ShowDialog();
+            FormsHelper.ShowInfoForm(_flightService.ShowIn24Hours());
         }
 
 
@@ -113,15 +116,13 @@ namespace Airline
                 DateOnly.FromDateTime(dtimeSearch.Value),
                 (int)numberOfPeople.Value
             );
-            var fi = new Flights_Info_Form(_flightService.SearchFlights(flightSearchRequest));
-            fi.ShowDialog();
+            FormsHelper.ShowInfoForm(_flightService.SearchFlights(flightSearchRequest));
         }
 
         private void myFlightsButton_Click(object sender, EventArgs e)
         {
-            String text = "my fligts";
-            //Flights_Info_Form fi = new Flights_Info_Form(text);
-            //fi.ShowDialog();
+            _bookingService.UpdateBookingsStatus();
+            FormsHelper.ShowInfoForm(_bookingService.ShowMyBookings());
         }
 
         private void searchButton1_Click(object sender, EventArgs e)
@@ -129,10 +130,7 @@ namespace Airline
             try
             {
                 var id = Convert.ToInt32(flightIdBox.Text);
-                var fi = new Flights_Info_Form(_flightService.GetById(id));
-
-                fi.ShowDialog();
-                flightIdBox.Text = "";
+                FormsHelper.ShowInfoForm(_flightService.GetById(id));
             }
             catch (Exception exception) when (exception is FormatException or NotFoundException)
             {
@@ -142,6 +140,40 @@ namespace Airline
 
         private void toolTipMain_Popup(object sender, PopupEventArgs e)
         {
+        }
+
+        private void accountLabel_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void logOutBtn_Click(object sender, EventArgs e)
+        {
+            FormsHelper.CURRENT_PASSENGER = null;
+            ShowLoginForm();
+        }
+
+        private void ShowLoginForm()
+        {
+            Hide();
+            var loginForm = new Login_Form();
+            loginForm.FormClosed += (s, args) => Close();
+            loginForm.ShowDialog();
+        }
+
+        private void createBooking_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var id = Convert.ToInt32(flightIdBox.Text);
+
+                MessageBox.Show("Booking successful");
+                FormsHelper.ShowInfoForm([_bookingService.createBooking(id)]);
+                flightIdBox.Text = string.Empty;
+            }
+            catch (Exception exception) when (exception is FormatException or BadRequestException)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
     }
 }

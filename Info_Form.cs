@@ -1,24 +1,23 @@
-﻿using Airline.model.dto;
-
-namespace Airline
+﻿namespace Airline
 {
-    public partial class Flights_Info_Form : Form
+    public partial class Info_Form : Form
     {
-        public Flights_Info_Form(List<FlightDto> flights)
+        public Info_Form()
         {
             InitializeComponent();
-            flight_View.DataSource = flights;
+        }
 
+        public void ShowInfo<T>(List<T> items)
+        {
+            dataView.DataSource = items;
         }
 
         private void Flights_Info_Form_Load(object sender, EventArgs e)
         {
-
         }
 
         private void first_Tab_Control1_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

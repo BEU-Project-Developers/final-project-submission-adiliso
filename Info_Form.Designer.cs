@@ -1,6 +1,6 @@
 ﻿namespace Airline
 {
-    partial class Flights_Info_Form
+    partial class Info_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -28,27 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Flights_Info_Form));
-            flight_View = new DataGridView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Info_Form));
+            dataView = new DataGridView();
             first_Tab_Control1 = new Controls.Fisrt_Tab_Control();
-            ((System.ComponentModel.ISupportInitialize)flight_View).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataView).BeginInit();
             SuspendLayout();
             // 
-            // flight_View
+            // dataView
             // 
-            flight_View.AllowUserToAddRows = false;
-            flight_View.AllowUserToDeleteRows = false;
-            flight_View.AllowUserToResizeColumns = false;
-            flight_View.AllowUserToResizeRows = false;
-            flight_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            flight_View.BackgroundColor = SystemColors.ActiveCaption;
-            flight_View.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            flight_View.Location = new Point(12, 12);
-            flight_View.Name = "flight_View";
-            flight_View.ReadOnly = true;
-            flight_View.RowHeadersWidth = 51;
-            flight_View.Size = new Size(776, 426);
-            flight_View.TabIndex = 1;
+            dataView.AllowUserToAddRows = false;
+            dataView.AllowUserToDeleteRows = false;
+            dataView.AllowUserToResizeRows = false;
+            dataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataView.BackgroundColor = SystemColors.ActiveCaption;
+            dataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataView.Location = new Point(12, 12);
+            dataView.Name = "dataView";
+            dataView.ReadOnly = true;
+            dataView.RowHeadersWidth = 51;
+            dataView.Size = new Size(834, 299);
+            dataView.TabIndex = 1;
             // 
             // first_Tab_Control1
             // 
@@ -58,25 +57,26 @@
             first_Tab_Control1.TabIndex = 0;
             first_Tab_Control1.Load += first_Tab_Control1_Load;
             // 
-            // Flights_Info_Form
+            // Info_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(flight_View);
+            ClientSize = new Size(858, 323);
+            Controls.Add(dataView);
             Controls.Add(first_Tab_Control1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Location = new Point(876, 497);
             MaximizeBox = false;
-            Name = "Flights_Info_Form";
+            MaximumSize = new Size(876, 497);
+            Name = "Info_Form";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Flights_Info_Form";
             Load += Flights_Info_Form_Load;
-            ((System.ComponentModel.ISupportInitialize)flight_View).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataView).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-        private DataGridView flight_View;
+        private DataGridView dataView;
         private Controls.Fisrt_Tab_Control first_Tab_Control1;
     }
 }

@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Airline.model.dto;
 
 namespace Airline
 {
     public partial class Flights_Info_Form : Form
     {
-        public Flights_Info_Form(String flights)
+        public Flights_Info_Form(List<FlightDto> flights)
         {
             InitializeComponent();
-            first_Tab_Control1.PrintFlight(flights);
-            first_Tab_Control1.Visible = true;
+            flight_View.DataSource = flights;
 
         }
 
         private void Flights_Info_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void first_Tab_Control1_Load(object sender, EventArgs e)
         {
 
         }

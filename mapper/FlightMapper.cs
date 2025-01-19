@@ -10,6 +10,7 @@ namespace Airline.mapper
             return new FlightDto
             {
                 Id = flightEntity.Id,
+                OriginPoint = flightEntity.OriginPoint,
                 DestPoint = flightEntity.DestPoint,
                 Time = flightEntity.DateTime,
                 FreeSeats = flightEntity.FreeSeats

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
+﻿using Airline.service;
 
 namespace Airline
 {
@@ -104,8 +95,10 @@ namespace Airline
 
         private void in24HoursButton_Click(object sender, EventArgs e)
         {
-            String text = "flights in next 24 hours";
-            Flights_Info_Form fi = new Flights_Info_Form(text);
+            FlightService flightService = new();
+
+            Flights_Info_Form fi = new Flights_Info_Form(flightService.ShowIn24Hours());
+
             fi.ShowDialog();
         }
 
@@ -119,8 +112,8 @@ namespace Airline
         private void searchButton2_Click(object sender, EventArgs e)
         {
             String text = "233, Baku, 34, active";
-            Flights_Info_Form fi = new Flights_Info_Form(text);
-            fi.ShowDialog();
+            //Flights_Info_Form fi = new Flights_Info_Form(text);
+            //fi.ShowDialog();
             comboBoxCities.Text = "";
             dtimeSearch.Text = "";
             numberOfPeople.Value = 1;
@@ -129,15 +122,15 @@ namespace Airline
         private void myFlightsButton_Click(object sender, EventArgs e)
         {
             String text = "my fligts";
-            Flights_Info_Form fi = new Flights_Info_Form(text);
-            fi.ShowDialog();
+            //Flights_Info_Form fi = new Flights_Info_Form(text);
+            //fi.ShowDialog();
         }
 
         private void searchButton1_Click(object sender, EventArgs e)
         {
             String text = "flight info";
-            Flights_Info_Form fi = new Flights_Info_Form(text);
-            fi.ShowDialog();
+            //Flights_Info_Form fi = new Flights_Info_Form(text);
+            //fi.ShowDialog();
             flightIdBox.Text = "";
         }
 

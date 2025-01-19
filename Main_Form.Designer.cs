@@ -46,7 +46,6 @@ namespace Airline
             searchButton1 = new Button();
             flightIdBox = new TextBox();
             tabBoardPage = new TabPage();
-            fisrt_Tab_Control1 = new Fisrt_Tab_Control();
             myFlightsButton = new Button();
             in24button = new Button();
             tabControl1 = new TabControl();
@@ -211,7 +210,6 @@ namespace Airline
             // 
             // tabBoardPage
             // 
-            tabBoardPage.Controls.Add(fisrt_Tab_Control1);
             tabBoardPage.Controls.Add(myFlightsButton);
             tabBoardPage.Controls.Add(in24button);
             tabBoardPage.Location = new Point(4, 64);
@@ -221,15 +219,6 @@ namespace Airline
             tabBoardPage.TabIndex = 0;
             tabBoardPage.Text = "    Online board     ";
             tabBoardPage.UseVisualStyleBackColor = true;
-            // 
-            // fisrt_Tab_Control1
-            // 
-            fisrt_Tab_Control1.Location = new Point(0, 140);
-            fisrt_Tab_Control1.Margin = new Padding(0);
-            fisrt_Tab_Control1.Name = "fisrt_Tab_Control1";
-            fisrt_Tab_Control1.Size = new Size(894, 471);
-            fisrt_Tab_Control1.TabIndex = 2;
-            fisrt_Tab_Control1.Visible = false;
             // 
             // myFlightsButton
             // 
@@ -390,7 +379,6 @@ namespace Airline
         private Button myFlightsButton;
         private Button in24button;
         private TabControl tabControl1;
-        private Fisrt_Tab_Control fisrt_Tab_Control1;
         private FileSystemWatcher fileSystemWatcher1;
         private FileSystemWatcher fileSystemWatcher2;
         private Label label5;

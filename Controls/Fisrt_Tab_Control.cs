@@ -17,10 +17,10 @@ namespace Airline.Controls
             InitializeComponent();
         }
 
-        public void PrintFlight(string text)
-        {
-            output_label.Text = text;
-        }
+        //public void PrintFlight(string text)
+        //{
+        //    output_label.Text = text;
+        //}
 
         private void Fisrt_Tab_Control_Load(object sender, EventArgs e)
         {

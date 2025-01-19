@@ -1,9 +1,12 @@
-﻿using Airline.service;
+﻿using Airline.exception;
+using Airline.service;
 
 namespace Airline
 {
     public partial class Main_Form : Form
     {
+        private readonly FlightService _flightService = new();
+
         public Main_Form()
         {
             InitializeComponent();
@@ -55,7 +58,6 @@ namespace Airline
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void Show_cursor(object sender, EventArgs e)
@@ -71,7 +73,6 @@ namespace Airline
                     label.Parent.BackColor = Color.CadetBlue;
                     break;
             }
-
         }
 
         private void Leave_cursor(object sender, EventArgs e)
@@ -85,28 +86,21 @@ namespace Airline
 
         private void fisrt_Tab_Control1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void in24HoursButton_Click(object sender, EventArgs e)
         {
-            FlightService flightService = new();
-
-            Flights_Info_Form fi = new Flights_Info_Form(flightService.ShowIn24Hours());
-
+            Flights_Info_Form fi = new Flights_Info_Form(_flightService.ShowIn24Hours());
             fi.ShowDialog();
         }
 
 
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void searchButton2_Click(object sender, EventArgs e)
@@ -128,15 +122,22 @@ namespace Airline
 
         private void searchButton1_Click(object sender, EventArgs e)
         {
-            String text = "flight info";
-            //Flights_Info_Form fi = new Flights_Info_Form(text);
-            //fi.ShowDialog();
-            flightIdBox.Text = "";
+            try
+            {
+                var id = Convert.ToInt32(flightIdBox.Text);
+                var fi = new Flights_Info_Form(_flightService.GetById(id));
+
+                fi.ShowDialog();
+                flightIdBox.Text = "";
+            }
+            catch (Exception exception) when (exception is FormatException or NotFoundException)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
 
         private void toolTipMain_Popup(object sender, PopupEventArgs e)
         {
-
         }
     }
 }

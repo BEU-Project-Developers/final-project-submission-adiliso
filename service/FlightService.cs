@@ -31,7 +31,7 @@ namespace Airline.service
             return [_mapper.ToDto(flight)];
         }
 
-        public List<FlightDto> SearchFlights(FlightSearchRequest request)
+        public List<FlightDto> SearchFlights(FlightSearchRequest request, bool dateChecked)
         {
             var startOfDay = request.Date.ToDateTime(new TimeOnly(0, 0), DateTimeKind.Utc);
             var endOfDay = request.Date.ToDateTime(new TimeOnly(23, 59, 59), DateTimeKind.Utc);
@@ -39,7 +39,7 @@ namespace Airline.service
             return _context.Flights
                 .Where(f => f.OriginPoint == request.OriginPoint &&
                             f.DestPoint == request.DestPoint &&
-                            f.DateTime >= startOfDay && f.DateTime <= endOfDay &&
+                            (!dateChecked || f.DateTime >= startOfDay && f.DateTime <= endOfDay) &&
                             f.FreeSeats >= request.NumOfPassengers)
                 .Select(f => _mapper.ToDto(f))
                 .ToList();

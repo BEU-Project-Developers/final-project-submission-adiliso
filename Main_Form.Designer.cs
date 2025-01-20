@@ -34,6 +34,7 @@ namespace Airline
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             tabPageSearchBook = new TabPage();
+            checkDate = new CheckBox();
             originPoint = new ComboBox();
             label1 = new Label();
             destPoint = new ComboBox();
@@ -48,9 +49,14 @@ namespace Airline
             searchButton1 = new Button();
             flightIdBox = new TextBox();
             tabBoardPage = new TabPage();
-            myFlightsButton = new Button();
+            label5 = new Label();
             in24button = new Button();
             tabControl1 = new TabControl();
+            tabPageBookings = new TabPage();
+            cancelBookingButton = new Button();
+            textBoxBookingId = new TextBox();
+            activeFlightsButton = new Button();
+            myFlightsButton = new Button();
             fileSystemWatcher1 = new FileSystemWatcher();
             fileSystemWatcher2 = new FileSystemWatcher();
             accountLabel = new Label();
@@ -66,6 +72,7 @@ namespace Airline
             tabInfoPage.SuspendLayout();
             tabBoardPage.SuspendLayout();
             tabControl1.SuspendLayout();
+            tabPageBookings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -75,6 +82,7 @@ namespace Airline
             // 
             // tabPageSearchBook
             // 
+            tabPageSearchBook.Controls.Add(checkDate);
             tabPageSearchBook.Controls.Add(originPoint);
             tabPageSearchBook.Controls.Add(label1);
             tabPageSearchBook.Controls.Add(destPoint);
@@ -93,6 +101,19 @@ namespace Airline
             tabPageSearchBook.TabIndex = 2;
             tabPageSearchBook.Text = "     Search-flights   ";
             tabPageSearchBook.UseVisualStyleBackColor = true;
+            // 
+            // checkDate
+            // 
+            checkDate.AutoSize = true;
+            checkDate.Checked = true;
+            checkDate.CheckState = CheckState.Checked;
+            checkDate.Cursor = Cursors.Hand;
+            checkDate.Location = new Point(580, 175);
+            checkDate.Name = "checkDate";
+            checkDate.Size = new Size(18, 17);
+            checkDate.TabIndex = 18;
+            checkDate.UseVisualStyleBackColor = true;
+            checkDate.CheckedChanged += checkDate_CheckedChanged;
             // 
             // originPoint
             // 
@@ -134,6 +155,7 @@ namespace Airline
             // 
             // dtimeSearch
             // 
+            dtimeSearch.AllowDrop = true;
             dtimeSearch.CalendarTitleBackColor = SystemColors.ControlText;
             dtimeSearch.CalendarTitleForeColor = Color.AliceBlue;
             dtimeSearch.CustomFormat = "dd MMM yyyy";
@@ -143,6 +165,7 @@ namespace Airline
             dtimeSearch.Name = "dtimeSearch";
             dtimeSearch.Size = new Size(180, 38);
             dtimeSearch.TabIndex = 11;
+            dtimeSearch.Value = new DateTime(2025, 1, 20, 18, 21, 51, 0);
             // 
             // searchButton2
             // 
@@ -207,9 +230,9 @@ namespace Airline
             createBooking.Cursor = Cursors.Hand;
             createBooking.FlatStyle = FlatStyle.Flat;
             createBooking.ForeColor = SystemColors.Control;
-            createBooking.Location = new Point(432, 123);
+            createBooking.Location = new Point(432, 128);
             createBooking.Name = "createBooking";
-            createBooking.Size = new Size(240, 55);
+            createBooking.Size = new Size(240, 65);
             createBooking.TabIndex = 3;
             createBooking.Text = "Create Booking";
             createBooking.UseVisualStyleBackColor = false;
@@ -240,7 +263,7 @@ namespace Airline
             // 
             // tabBoardPage
             // 
-            tabBoardPage.Controls.Add(myFlightsButton);
+            tabBoardPage.Controls.Add(label5);
             tabBoardPage.Controls.Add(in24button);
             tabBoardPage.Location = new Point(4, 64);
             tabBoardPage.Margin = new Padding(0);
@@ -250,20 +273,15 @@ namespace Airline
             tabBoardPage.Text = "    Online board     ";
             tabBoardPage.UseVisualStyleBackColor = true;
             // 
-            // myFlightsButton
+            // label5
             // 
-            myFlightsButton.BackColor = Color.FromArgb(55, 166, 219);
-            myFlightsButton.Cursor = Cursors.Hand;
-            myFlightsButton.FlatStyle = FlatStyle.Flat;
-            myFlightsButton.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            myFlightsButton.ForeColor = SystemColors.Control;
-            myFlightsButton.Location = new Point(503, 61);
-            myFlightsButton.Name = "myFlightsButton";
-            myFlightsButton.Size = new Size(332, 72);
-            myFlightsButton.TabIndex = 1;
-            myFlightsButton.Text = "Show my flights";
-            myFlightsButton.UseVisualStyleBackColor = false;
-            myFlightsButton.Click += myFlightsButton_Click;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
+            label5.Location = new Point(60, 46);
+            label5.Name = "label5";
+            label5.Size = new Size(416, 40);
+            label5.TabIndex = 1;
+            label5.Text = "Show flights in next 24 hours";
             // 
             // in24button
             // 
@@ -272,19 +290,20 @@ namespace Airline
             in24button.FlatStyle = FlatStyle.Flat;
             in24button.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             in24button.ForeColor = SystemColors.Control;
-            in24button.Location = new Point(48, 61);
+            in24button.Location = new Point(60, 124);
             in24button.Name = "in24button";
-            in24button.Size = new Size(358, 72);
+            in24button.Size = new Size(160, 60);
             in24button.TabIndex = 0;
-            in24button.Text = "Show flights in next 24 hours";
+            in24button.Text = "Show";
             in24button.UseVisualStyleBackColor = false;
             in24button.Click += in24HoursButton_Click;
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabBoardPage);
-            tabControl1.Controls.Add(tabInfoPage);
             tabControl1.Controls.Add(tabPageSearchBook);
+            tabControl1.Controls.Add(tabInfoPage);
+            tabControl1.Controls.Add(tabPageBookings);
             tabControl1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             tabControl1.ItemSize = new Size(190, 60);
             tabControl1.Location = new Point(255, 143);
@@ -294,6 +313,73 @@ namespace Airline
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(902, 361);
             tabControl1.TabIndex = 0;
+            // 
+            // tabPageBookings
+            // 
+            tabPageBookings.Controls.Add(cancelBookingButton);
+            tabPageBookings.Controls.Add(textBoxBookingId);
+            tabPageBookings.Controls.Add(activeFlightsButton);
+            tabPageBookings.Controls.Add(myFlightsButton);
+            tabPageBookings.Location = new Point(4, 64);
+            tabPageBookings.Name = "tabPageBookings";
+            tabPageBookings.Size = new Size(894, 293);
+            tabPageBookings.TabIndex = 3;
+            tabPageBookings.Text = "    Bookings    ";
+            tabPageBookings.UseVisualStyleBackColor = true;
+            // 
+            // cancelBookingButton
+            // 
+            cancelBookingButton.BackColor = Color.FromArgb(55, 166, 219);
+            cancelBookingButton.Cursor = Cursors.Hand;
+            cancelBookingButton.FlatStyle = FlatStyle.Flat;
+            cancelBookingButton.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            cancelBookingButton.ForeColor = SystemColors.Control;
+            cancelBookingButton.Location = new Point(335, 46);
+            cancelBookingButton.Name = "cancelBookingButton";
+            cancelBookingButton.Size = new Size(192, 71);
+            cancelBookingButton.TabIndex = 5;
+            cancelBookingButton.Text = "Cancel booking";
+            cancelBookingButton.UseVisualStyleBackColor = false;
+            cancelBookingButton.Click += cancelBookingButton_Click;
+            // 
+            // textBoxBookingId
+            // 
+            textBoxBookingId.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 204);
+            textBoxBookingId.Location = new Point(103, 53);
+            textBoxBookingId.Name = "textBoxBookingId";
+            textBoxBookingId.PlaceholderText = "Enter booking id ";
+            textBoxBookingId.Size = new Size(193, 38);
+            textBoxBookingId.TabIndex = 4;
+            // 
+            // activeFlightsButton
+            // 
+            activeFlightsButton.BackColor = Color.FromArgb(55, 166, 219);
+            activeFlightsButton.Cursor = Cursors.Hand;
+            activeFlightsButton.FlatStyle = FlatStyle.Flat;
+            activeFlightsButton.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            activeFlightsButton.ForeColor = SystemColors.Control;
+            activeFlightsButton.Location = new Point(538, 192);
+            activeFlightsButton.Name = "activeFlightsButton";
+            activeFlightsButton.Size = new Size(332, 72);
+            activeFlightsButton.TabIndex = 3;
+            activeFlightsButton.Text = "Show active flights";
+            activeFlightsButton.UseVisualStyleBackColor = false;
+            activeFlightsButton.Click += activeFlightsButton_Click;
+            // 
+            // myFlightsButton
+            // 
+            myFlightsButton.BackColor = Color.FromArgb(55, 166, 219);
+            myFlightsButton.Cursor = Cursors.Hand;
+            myFlightsButton.FlatStyle = FlatStyle.Flat;
+            myFlightsButton.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            myFlightsButton.ForeColor = SystemColors.Control;
+            myFlightsButton.Location = new Point(83, 192);
+            myFlightsButton.Name = "myFlightsButton";
+            myFlightsButton.Size = new Size(332, 72);
+            myFlightsButton.TabIndex = 2;
+            myFlightsButton.Text = "Show my flights";
+            myFlightsButton.UseVisualStyleBackColor = false;
+            myFlightsButton.Click += myFlightsButton_Click_1;
             // 
             // fileSystemWatcher1
             // 
@@ -376,8 +462,8 @@ namespace Airline
             // 
             // Main_Form
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
+            AutoScroll = true;
             BackColor = SystemColors.ControlDarkDark;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
@@ -399,7 +485,10 @@ namespace Airline
             tabInfoPage.ResumeLayout(false);
             tabInfoPage.PerformLayout();
             tabBoardPage.ResumeLayout(false);
+            tabBoardPage.PerformLayout();
             tabControl1.ResumeLayout(false);
+            tabPageBookings.ResumeLayout(false);
+            tabPageBookings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -418,7 +507,6 @@ namespace Airline
         private Label label2;
         private TabPage tabInfoPage;
         private TabPage tabBoardPage;
-        private Button myFlightsButton;
         private Button in24button;
         private TabControl tabControl1;
         private FileSystemWatcher fileSystemWatcher1;
@@ -439,5 +527,12 @@ namespace Airline
         private Button createBooking;
         private Button searchButton1;
         private TextBox flightIdBox;
+        private CheckBox checkDate;
+        private TabPage tabPageBookings;
+        private Button myFlightsButton;
+        private Button cancelBookingButton;
+        private TextBox textBoxBookingId;
+        private Button activeFlightsButton;
+        private Label label5;
     }
 }

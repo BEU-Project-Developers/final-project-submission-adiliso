@@ -23,13 +23,16 @@ namespace Airline
                 myFlightsButton,
                 searchButton1,
                 searchButton2,
-                createBooking
+                createBooking,
+                cancelBookingButton,
+                activeFlightsButton
             ], 30);
 
             toolTipMain.SetToolTip(in24button, "Click to get fligts in next 24 hours");
             toolTipMain.SetToolTip(myFlightsButton, "Click to get your active and inactive bookings");
             toolTipMain.SetToolTip(searchButton1, "Click to get flight");
             toolTipMain.SetToolTip(searchButton2, "Click to get flights");
+            toolTipMain.SetToolTip(checkDate, "Click to ignore date");
 
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += TabControl1_DrawItem;
@@ -116,13 +119,7 @@ namespace Airline
                 DateOnly.FromDateTime(dtimeSearch.Value),
                 (int)numberOfPeople.Value
             );
-            FormsHelper.ShowInfoForm(_flightService.SearchFlights(flightSearchRequest));
-        }
-
-        private void myFlightsButton_Click(object sender, EventArgs e)
-        {
-            _bookingService.UpdateBookingsStatus();
-            FormsHelper.ShowInfoForm(_bookingService.ShowMyBookings());
+            FormsHelper.ShowInfoForm(_flightService.SearchFlights(flightSearchRequest, checkDate.Checked));
         }
 
         private void searchButton1_Click(object sender, EventArgs e)
@@ -174,6 +171,38 @@ namespace Airline
             {
                 MessageBox.Show(exception.Message);
             }
+        }
+
+        private void checkDate_CheckedChanged(object sender, EventArgs e)
+        {
+            toolTipMain.SetToolTip(checkDate, checkDate.Checked ? "Click to ignore date" : "Click to filter with date");
+        }
+
+        private void myFlightsButton_Click_1(object sender, EventArgs e)
+        {
+            _bookingService.UpdateBookingsStatus();
+            FormsHelper.ShowInfoForm(_bookingService.ShowMyBookings());
+        }
+
+        private void cancelBookingButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var id = Convert.ToInt32(textBoxBookingId.Text);
+                _bookingService.CancelBooking(id);
+            }
+            catch (Exception exception) when (exception is FormatException or BadRequestException or NotFoundException)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
+
+            MessageBox.Show(@"Booking cancelled");
+        }
+
+        private void activeFlightsButton_Click(object sender, EventArgs e)
+        {
+            FormsHelper.ShowInfoForm(_bookingService.ShowActiveBookings());
         }
     }
 }

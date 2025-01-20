@@ -52,6 +52,14 @@ public class BookingService
             .ToList();
     }
 
+    public List<BookingResponse> ShowActiveBookings()
+    {
+        return _context.Bookings
+            .Where(b => b.Passenger == FormsHelper.CURRENT_PASSENGER.Username && b.IsActive)
+            .Select(b => _mapper.ToResponse(b))
+            .ToList();
+    }
+
     public void UpdateBookingsStatus()
     {
         var currentDate = DateTime.UtcNow;
@@ -62,5 +70,20 @@ public class BookingService
                 .Select(f => f.Id)
                 .Contains(b.FlightId))
             .ExecuteUpdate(b => b.SetProperty(b => b.IsActive, false));
+    }
+
+    public void CancelBooking(int bookingId)
+    {
+        var booking = _context.Bookings.Find(bookingId);
+
+        if (booking == null || booking.Passenger != FormsHelper.CURRENT_PASSENGER.Username)
+            throw new NotFoundException($"Booking not found with id {bookingId}");
+
+        if (!booking.IsActive)
+            throw new BadRequestException("This booking is not active");
+
+        booking.IsActive = false;
+        _context.Bookings.Update(booking);
+        _context.SaveChanges();
     }
 }

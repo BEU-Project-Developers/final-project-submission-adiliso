@@ -162,6 +162,7 @@ namespace Airline
             dtimeSearch.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
             dtimeSearch.Format = DateTimePickerFormat.Custom;
             dtimeSearch.Location = new Point(384, 161);
+            dtimeSearch.MinDate = new DateTime(2025, 1, 1, 0, 0, 0, 0);
             dtimeSearch.Name = "dtimeSearch";
             dtimeSearch.Size = new Size(180, 38);
             dtimeSearch.TabIndex = 11;

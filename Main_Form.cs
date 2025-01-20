@@ -162,12 +162,12 @@ namespace Airline
             try
             {
                 var id = Convert.ToInt32(flightIdBox.Text);
-
-                MessageBox.Show("Booking successful");
                 FormsHelper.ShowInfoForm([_bookingService.createBooking(id)]);
+                
+                MessageBox.Show(@"Booking successful");
                 flightIdBox.Text = string.Empty;
             }
-            catch (Exception exception) when (exception is FormatException or BadRequestException)
+            catch (Exception exception) when (exception is FormatException or BadRequestException or NotFoundException)
             {
                 MessageBox.Show(exception.Message);
             }

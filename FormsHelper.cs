@@ -3,7 +3,7 @@ using Airline.model.dto;
 
 namespace Airline
 {
-    public class FormsHelper
+    public static class FormsHelper
     {
         public static PassengerDto CURRENT_PASSENGER = null;
 
@@ -17,7 +17,7 @@ namespace Airline
 
         private static GraphicsPath CreateRoundedRectanglePath(Rectangle rect, int radius)
         {
-            GraphicsPath path = new GraphicsPath();
+            var path = new GraphicsPath();
             path.AddArc(rect.Left, rect.Top, radius, radius, 180, 90);
             path.AddArc(rect.Right - radius, rect.Top, radius, radius, 270, 90);
             path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90);
@@ -25,10 +25,10 @@ namespace Airline
             path.CloseFigure();
             return path;
         }
-        
+
         public static void ShowInfoForm<T>(List<T> items)
         {
-            var fi = new Info_Form();
+            var fi = new InfoForm();
             fi.ShowInfo(items);
             fi.ShowDialog();
         }

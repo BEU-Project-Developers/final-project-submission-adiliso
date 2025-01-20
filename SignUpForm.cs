@@ -3,9 +3,9 @@ using Airline.service;
 
 namespace Airline
 {
-    public partial class SignUp_Form : Form
+    public partial class SignUpForm : Form
     {
-        public SignUp_Form()
+        public SignUpForm()
         {
             InitializeComponent();
             FormsHelper.RoundItems([signUpPanel], 60);
@@ -16,19 +16,7 @@ namespace Airline
             toolTipSignUp.SetToolTip(btnLogin2, "Click to go login form");
         }
 
-        private void SignUp_Form_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void btnLogin2_Click(object sender, EventArgs e)
         {
             GoToLoginForm();
         }
@@ -37,12 +25,12 @@ namespace Airline
         {
             PassengerService passengerService = new();
 
-            var name = textBox1.Text;
-            var username = textBox2.Text;
-            var password = textBox3.Text;
-            var confirmPassword = textBox4.Text;
+            var name = textBoxName.Text;
+            var username = textBoxUsername.Text;
+            var password = textBoxPassword.Text;
+            var confirmPassword = textBoxCPassword.Text;
 
-            PassengerCreateRequest request = new PassengerCreateRequest
+            var request = new PassengerCreateRequest
             {
                 Name = name,
                 Username = username,
@@ -53,7 +41,7 @@ namespace Airline
             try
             {
                 passengerService.Create(request);
-                MessageBox.Show("Account created successfully!");
+                MessageBox.Show(@"Account created successfully!");
             }
             catch (Exception ex)
             {
@@ -64,20 +52,16 @@ namespace Airline
             GoToLoginForm();
         }
 
-        private void toolTipSignUp_Popup(object sender, PopupEventArgs e)
-        {
-        }
-
         private void showPassword_CheckedChanged(object sender, EventArgs e)
         {
-            textBox3.UseSystemPasswordChar = !showPassword.Checked;
-            textBox4.UseSystemPasswordChar = !showPassword.Checked;
+            textBoxPassword.UseSystemPasswordChar = !checkBoxShowPassword.Checked;
+            textBoxCPassword.UseSystemPasswordChar = !checkBoxShowPassword.Checked;
         }
 
         private void GoToLoginForm()
         {
             Hide();
-            var loginForm = new Login_Form();
+            var loginForm = new LoginForm();
             loginForm.FormClosed += (s, args) => Close();
             loginForm.ShowDialog();
         }

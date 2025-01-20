@@ -58,14 +58,14 @@ namespace Airline.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("DestPoint")
+                    b.Property<string>("To")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("FreeSeats")
                         .HasColumnType("integer");
 
-                    b.Property<string>("OriginPoint")
+                    b.Property<string>("From")
                         .IsRequired()
                         .HasColumnType("text");
 

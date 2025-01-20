@@ -36,7 +36,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             Name = "Fisrt_Tab_Control";
             Size = new Size(405, 151);
-            Load += Fisrt_Tab_Control_Load;
             ResumeLayout(false);
         }
 

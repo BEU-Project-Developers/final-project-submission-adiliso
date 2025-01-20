@@ -4,9 +4,9 @@ using static Airline.FormsHelper;
 
 namespace Airline
 {
-    public partial class Login_Form : Form
+    public partial class LoginForm : Form
     {
-        public Login_Form()
+        public LoginForm()
         {
             InitializeComponent();
             RoundItems([loginPanel], 60);
@@ -20,7 +20,7 @@ namespace Airline
         private void button2_Click(object sender, EventArgs e)
         {
             Hide();
-            var signUpForm = new SignUp_Form();
+            var signUpForm = new SignUpForm();
             signUpForm.FormClosed += (s, args) => Close();
             signUpForm.ShowDialog();
         }
@@ -31,8 +31,8 @@ namespace Airline
 
             var request = new PassengerLoginRequest
             {
-                Username = textBox2.Text,
-                Password = textBox3.Text
+                Username = textBoxUsername.Text,
+                Password = textBoxPassword.Text
             };
 
             try
@@ -46,22 +46,14 @@ namespace Airline
             }
 
             Hide();
-            var mainForm = new Main_Form();
+            var mainForm = new MainForm();
             mainForm.FormClosed += (s, args) => Close();
             mainForm.ShowDialog();
         }
 
-        private void Login_Form_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void toolTipLogin_Popup(object sender, PopupEventArgs e)
-        {
-        }
-
         private void showPassword_CheckedChanged(object sender, EventArgs e)
         {
-            textBox3.UseSystemPasswordChar = !showPassword.Checked;
+            textBoxPassword.UseSystemPasswordChar = !showPassword.Checked;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Airline
 {
-    partial class Info_Form
+    partial class InfoForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Info_Form));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfoForm));
             dataView = new DataGridView();
             first_Tab_Control1 = new Controls.Fisrt_Tab_Control();
             ((System.ComponentModel.ISupportInitialize)dataView).BeginInit();
@@ -55,9 +55,8 @@
             first_Tab_Control1.Name = "first_Tab_Control1";
             first_Tab_Control1.Size = new Size(776, 430);
             first_Tab_Control1.TabIndex = 0;
-            first_Tab_Control1.Load += first_Tab_Control1_Load;
             // 
-            // Info_Form
+            // InfoForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -68,9 +67,8 @@
             Location = new Point(876, 497);
             MaximizeBox = false;
             MaximumSize = new Size(876, 497);
-            Name = "Info_Form";
+            Name = "InfoForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Load += Flights_Info_Form_Load;
             ((System.ComponentModel.ISupportInitialize)dataView).EndInit();
             ResumeLayout(false);
         }

@@ -1,6 +1,6 @@
 ﻿namespace Airline
 {
-    partial class Login_Form
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login_Form));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             loginPanel = new Panel();
             showPassword = new CheckBox();
             btnSignUp2 = new Button();
             loginButton = new Button();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            label5 = new Label();
-            label4 = new Label();
-            label1 = new Label();
+            textBoxPassword = new TextBox();
+            textBoxUsername = new TextBox();
+            labelPassword = new Label();
+            labelUsername = new Label();
+            labelLogin = new Label();
             toolTipLogin = new ToolTip(components);
             loginPanel.SuspendLayout();
             SuspendLayout();
@@ -50,11 +50,11 @@
             loginPanel.Controls.Add(showPassword);
             loginPanel.Controls.Add(btnSignUp2);
             loginPanel.Controls.Add(loginButton);
-            loginPanel.Controls.Add(textBox3);
-            loginPanel.Controls.Add(textBox2);
-            loginPanel.Controls.Add(label5);
-            loginPanel.Controls.Add(label4);
-            loginPanel.Controls.Add(label1);
+            loginPanel.Controls.Add(textBoxPassword);
+            loginPanel.Controls.Add(textBoxUsername);
+            loginPanel.Controls.Add(labelPassword);
+            loginPanel.Controls.Add(labelUsername);
+            loginPanel.Controls.Add(labelLogin);
             loginPanel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
             loginPanel.Location = new Point(44, 31);
             loginPanel.Name = "loginPanel";
@@ -104,58 +104,54 @@
             loginButton.UseVisualStyleBackColor = false;
             loginButton.Click += loginButton_Click;
             // 
-            // textBox3
+            // textBoxPassword
             // 
-            textBox3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBox3.Location = new Point(179, 202);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(182, 38);
-            textBox3.TabIndex = 8;
-            textBox3.UseSystemPasswordChar = true;
+            textBoxPassword.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBoxPassword.Location = new Point(179, 202);
+            textBoxPassword.Name = "textBoxPassword";
+            textBoxPassword.Size = new Size(182, 38);
+            textBoxPassword.TabIndex = 8;
+            textBoxPassword.UseSystemPasswordChar = true;
             // 
-            // textBox2
+            // textBoxUsername
             // 
-            textBox2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBox2.Location = new Point(179, 127);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(182, 38);
-            textBox2.TabIndex = 7;
+            textBoxUsername.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            textBoxUsername.Location = new Point(179, 127);
+            textBoxUsername.Name = "textBoxUsername";
+            textBoxUsername.Size = new Size(182, 38);
+            textBoxUsername.TabIndex = 7;
             // 
-            // label5
+            // labelPassword
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label5.Location = new Point(40, 202);
-            label5.Name = "label5";
-            label5.Size = new Size(132, 31);
-            label5.TabIndex = 4;
-            label5.Text = "password : ";
+            labelPassword.AutoSize = true;
+            labelPassword.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelPassword.Location = new Point(40, 202);
+            labelPassword.Name = "labelPassword";
+            labelPassword.Size = new Size(132, 31);
+            labelPassword.TabIndex = 4;
+            labelPassword.Text = "password : ";
             // 
-            // label4
+            // labelUsername
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label4.Location = new Point(40, 127);
-            label4.Name = "label4";
-            label4.Size = new Size(133, 31);
-            label4.TabIndex = 3;
-            label4.Text = "username : ";
+            labelUsername.AutoSize = true;
+            labelUsername.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelUsername.Location = new Point(40, 127);
+            labelUsername.Name = "labelUsername";
+            labelUsername.Size = new Size(133, 31);
+            labelUsername.TabIndex = 3;
+            labelUsername.Text = "username : ";
             // 
-            // label1
+            // labelLogin
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.Location = new Point(62, 39);
-            label1.Name = "label1";
-            label1.Size = new Size(110, 46);
-            label1.TabIndex = 0;
-            label1.Text = "Login";
+            labelLogin.AutoSize = true;
+            labelLogin.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelLogin.Location = new Point(62, 39);
+            labelLogin.Name = "labelLogin";
+            labelLogin.Size = new Size(110, 46);
+            labelLogin.TabIndex = 0;
+            labelLogin.Text = "Login";
             // 
-            // toolTipLogin
-            // 
-            toolTipLogin.Popup += toolTipLogin_Popup;
-            // 
-            // Login_Form
+            // LoginForm
             // 
             AcceptButton = loginButton;
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -166,10 +162,9 @@
             Controls.Add(loginPanel);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "Login_Form";
+            Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Login_Form";
-            Load += Login_Form_Load;
+            Text = "LoginForm";
             loginPanel.ResumeLayout(false);
             loginPanel.PerformLayout();
             ResumeLayout(false);
@@ -179,11 +174,11 @@
 
         private Panel loginPanel;
         private Button loginButton;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private Label label5;
-        private Label label4;
-        private Label label1;
+        private TextBox textBoxPassword;
+        private TextBox textBoxUsername;
+        private Label labelPassword;
+        private Label labelUsername;
+        private Label labelLogin;
         private Button btnSignUp2;
         private ToolTip toolTipLogin;
         private CheckBox showPassword;

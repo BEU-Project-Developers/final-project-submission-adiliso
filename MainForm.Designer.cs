@@ -3,7 +3,7 @@ using System.Runtime.ExceptionServices;
 
 namespace Airline
 {
-    partial class Main_Form
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,24 +32,24 @@ namespace Airline
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabPageSearchBook = new TabPage();
             checkDate = new CheckBox();
             originPoint = new ComboBox();
-            label1 = new Label();
+            labelOriginPoint = new Label();
             destPoint = new ComboBox();
-            numberOfPeople = new NumericUpDown();
+            freeSeats = new NumericUpDown();
             dtimeSearch = new DateTimePicker();
             searchButton2 = new Button();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
+            labelFreeSeats = new Label();
+            labelDate = new Label();
+            labelDestpoint = new Label();
             tabInfoPage = new TabPage();
-            createBooking = new Button();
+            createBookingButton = new Button();
             searchButton1 = new Button();
             flightIdBox = new TextBox();
             tabBoardPage = new TabPage();
-            label5 = new Label();
+            labelShowFlights = new Label();
             in24button = new Button();
             tabControl1 = new TabControl();
             tabPageBookings = new TabPage();
@@ -62,13 +62,13 @@ namespace Airline
             accountLabel = new Label();
             imageList1 = new ImageList(components);
             pictureBox1 = new PictureBox();
-            label6 = new Label();
-            pictureBox2 = new PictureBox();
+            labelProjectName = new Label();
+            pictureBoxIcon = new PictureBox();
             bindingSource1 = new BindingSource(components);
             toolTipMain = new ToolTip(components);
             logOutBtn = new Button();
             tabPageSearchBook.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numberOfPeople).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)freeSeats).BeginInit();
             tabInfoPage.SuspendLayout();
             tabBoardPage.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -76,7 +76,7 @@ namespace Airline
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
@@ -84,14 +84,14 @@ namespace Airline
             // 
             tabPageSearchBook.Controls.Add(checkDate);
             tabPageSearchBook.Controls.Add(originPoint);
-            tabPageSearchBook.Controls.Add(label1);
+            tabPageSearchBook.Controls.Add(labelOriginPoint);
             tabPageSearchBook.Controls.Add(destPoint);
-            tabPageSearchBook.Controls.Add(numberOfPeople);
+            tabPageSearchBook.Controls.Add(freeSeats);
             tabPageSearchBook.Controls.Add(dtimeSearch);
             tabPageSearchBook.Controls.Add(searchButton2);
-            tabPageSearchBook.Controls.Add(label4);
-            tabPageSearchBook.Controls.Add(label3);
-            tabPageSearchBook.Controls.Add(label2);
+            tabPageSearchBook.Controls.Add(labelFreeSeats);
+            tabPageSearchBook.Controls.Add(labelDate);
+            tabPageSearchBook.Controls.Add(labelDestpoint);
             tabPageSearchBook.ImeMode = ImeMode.Disable;
             tabPageSearchBook.Location = new Point(4, 64);
             tabPageSearchBook.Margin = new Padding(0);
@@ -124,15 +124,15 @@ namespace Airline
             originPoint.Size = new Size(180, 39);
             originPoint.TabIndex = 15;
             // 
-            // label1
+            // labelOriginPoint
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.Location = new Point(60, 52);
-            label1.Name = "label1";
-            label1.Size = new Size(209, 31);
-            label1.TabIndex = 14;
-            label1.Text = "Enter origin point :";
+            labelOriginPoint.AutoSize = true;
+            labelOriginPoint.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelOriginPoint.Location = new Point(60, 52);
+            labelOriginPoint.Name = "labelOriginPoint";
+            labelOriginPoint.Size = new Size(209, 31);
+            labelOriginPoint.TabIndex = 14;
+            labelOriginPoint.Text = "Enter origin point :";
             // 
             // destPoint
             // 
@@ -143,15 +143,15 @@ namespace Airline
             destPoint.Size = new Size(180, 39);
             destPoint.TabIndex = 13;
             // 
-            // numberOfPeople
+            // freeSeats
             // 
-            numberOfPeople.Location = new Point(384, 228);
-            numberOfPeople.Maximum = new decimal(new int[] { 300, 0, 0, 0 });
-            numberOfPeople.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numberOfPeople.Name = "numberOfPeople";
-            numberOfPeople.Size = new Size(79, 39);
-            numberOfPeople.TabIndex = 12;
-            numberOfPeople.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            freeSeats.Location = new Point(384, 228);
+            freeSeats.Maximum = new decimal(new int[] { 300, 0, 0, 0 });
+            freeSeats.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            freeSeats.Name = "freeSeats";
+            freeSeats.Size = new Size(79, 39);
+            freeSeats.TabIndex = 12;
+            freeSeats.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // dtimeSearch
             // 
@@ -174,7 +174,7 @@ namespace Airline
             searchButton2.Cursor = Cursors.Hand;
             searchButton2.FlatStyle = FlatStyle.Flat;
             searchButton2.ForeColor = SystemColors.Control;
-            searchButton2.Location = new Point(634, 187);
+            searchButton2.Location = new Point(663, 197);
             searchButton2.Name = "searchButton2";
             searchButton2.Size = new Size(164, 70);
             searchButton2.TabIndex = 10;
@@ -182,39 +182,39 @@ namespace Airline
             searchButton2.UseVisualStyleBackColor = false;
             searchButton2.Click += searchButton2_Click;
             // 
-            // label4
+            // labelFreeSeats
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label4.Location = new Point(60, 236);
-            label4.Name = "label4";
-            label4.Size = new Size(218, 31);
-            label4.TabIndex = 8;
-            label4.Text = "Number of people :";
+            labelFreeSeats.AutoSize = true;
+            labelFreeSeats.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelFreeSeats.Location = new Point(60, 236);
+            labelFreeSeats.Name = "labelFreeSeats";
+            labelFreeSeats.Size = new Size(132, 31);
+            labelFreeSeats.TabIndex = 8;
+            labelFreeSeats.Text = "Free Seats :";
             // 
-            // label3
+            // labelDate
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label3.Location = new Point(60, 171);
-            label3.Name = "label3";
-            label3.Size = new Size(138, 31);
-            label3.TabIndex = 6;
-            label3.Text = "Enter date  :";
+            labelDate.AutoSize = true;
+            labelDate.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelDate.Location = new Point(60, 171);
+            labelDate.Name = "labelDate";
+            labelDate.Size = new Size(138, 31);
+            labelDate.TabIndex = 6;
+            labelDate.Text = "Enter date  :";
             // 
-            // label2
+            // labelDestpoint
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(60, 110);
-            label2.Name = "label2";
-            label2.Size = new Size(263, 31);
-            label2.TabIndex = 4;
-            label2.Text = "Enter destination point :";
+            labelDestpoint.AutoSize = true;
+            labelDestpoint.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelDestpoint.Location = new Point(60, 110);
+            labelDestpoint.Name = "labelDestpoint";
+            labelDestpoint.Size = new Size(263, 31);
+            labelDestpoint.TabIndex = 4;
+            labelDestpoint.Text = "Enter destination point :";
             // 
             // tabInfoPage
             // 
-            tabInfoPage.Controls.Add(createBooking);
+            tabInfoPage.Controls.Add(createBookingButton);
             tabInfoPage.Controls.Add(searchButton1);
             tabInfoPage.Controls.Add(flightIdBox);
             tabInfoPage.Location = new Point(4, 64);
@@ -225,19 +225,19 @@ namespace Airline
             tabInfoPage.Text = "     Flight Info     ";
             tabInfoPage.UseVisualStyleBackColor = true;
             // 
-            // createBooking
+            // createBookingButton
             // 
-            createBooking.BackColor = Color.FromArgb(55, 166, 219);
-            createBooking.Cursor = Cursors.Hand;
-            createBooking.FlatStyle = FlatStyle.Flat;
-            createBooking.ForeColor = SystemColors.Control;
-            createBooking.Location = new Point(432, 128);
-            createBooking.Name = "createBooking";
-            createBooking.Size = new Size(240, 65);
-            createBooking.TabIndex = 3;
-            createBooking.Text = "Create Booking";
-            createBooking.UseVisualStyleBackColor = false;
-            createBooking.Click += createBooking_Click;
+            createBookingButton.BackColor = Color.FromArgb(55, 166, 219);
+            createBookingButton.Cursor = Cursors.Hand;
+            createBookingButton.FlatStyle = FlatStyle.Flat;
+            createBookingButton.ForeColor = SystemColors.Control;
+            createBookingButton.Location = new Point(432, 128);
+            createBookingButton.Name = "createBookingButton";
+            createBookingButton.Size = new Size(240, 65);
+            createBookingButton.TabIndex = 3;
+            createBookingButton.Text = "Create Booking";
+            createBookingButton.UseVisualStyleBackColor = false;
+            createBookingButton.Click += createBooking_Click;
             // 
             // searchButton1
             // 
@@ -264,7 +264,7 @@ namespace Airline
             // 
             // tabBoardPage
             // 
-            tabBoardPage.Controls.Add(label5);
+            tabBoardPage.Controls.Add(labelShowFlights);
             tabBoardPage.Controls.Add(in24button);
             tabBoardPage.Location = new Point(4, 64);
             tabBoardPage.Margin = new Padding(0);
@@ -274,15 +274,15 @@ namespace Airline
             tabBoardPage.Text = "    Online board     ";
             tabBoardPage.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // labelShowFlights
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
-            label5.Location = new Point(60, 46);
-            label5.Name = "label5";
-            label5.Size = new Size(416, 40);
-            label5.TabIndex = 1;
-            label5.Text = "Show flights in next 24 hours";
+            labelShowFlights.AutoSize = true;
+            labelShowFlights.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
+            labelShowFlights.Location = new Point(60, 46);
+            labelShowFlights.Name = "labelShowFlights";
+            labelShowFlights.Size = new Size(416, 40);
+            labelShowFlights.TabIndex = 1;
+            labelShowFlights.Text = "Show flights in next 24 hours";
             // 
             // in24button
             // 
@@ -291,7 +291,7 @@ namespace Airline
             in24button.FlatStyle = FlatStyle.Flat;
             in24button.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             in24button.ForeColor = SystemColors.Control;
-            in24button.Location = new Point(60, 124);
+            in24button.Location = new Point(60, 146);
             in24button.Name = "in24button";
             in24button.Size = new Size(160, 60);
             in24button.TabIndex = 0;
@@ -359,7 +359,7 @@ namespace Airline
             activeFlightsButton.FlatStyle = FlatStyle.Flat;
             activeFlightsButton.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             activeFlightsButton.ForeColor = SystemColors.Control;
-            activeFlightsButton.Location = new Point(538, 192);
+            activeFlightsButton.Location = new Point(482, 192);
             activeFlightsButton.Name = "activeFlightsButton";
             activeFlightsButton.Size = new Size(332, 72);
             activeFlightsButton.TabIndex = 3;
@@ -398,7 +398,7 @@ namespace Airline
             accountLabel.BackColor = Color.Transparent;
             accountLabel.Font = new Font("Segoe UI Black", 15.8F, FontStyle.Bold);
             accountLabel.ForeColor = Color.Snow;
-            accountLabel.Location = new Point(1115, 23);
+            accountLabel.Location = new Point(1103, 23);
             accountLabel.Name = "accountLabel";
             accountLabel.Padding = new Padding(8);
             accountLabel.Size = new Size(264, 53);
@@ -415,39 +415,35 @@ namespace Airline
             // 
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(1041, 23);
+            pictureBox1.Location = new Point(1030, 23);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(88, 56);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 14;
             pictureBox1.TabStop = false;
             // 
-            // label6
+            // labelProjectName
             // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Elephant", 23.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = SystemColors.ControlLightLight;
-            label6.Location = new Point(135, 28);
-            label6.Name = "label6";
-            label6.Size = new Size(242, 51);
-            label6.TabIndex = 15;
-            label6.Text = "Sky Wings";
+            labelProjectName.AutoSize = true;
+            labelProjectName.BackColor = Color.Transparent;
+            labelProjectName.Font = new Font("Elephant", 23.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelProjectName.ForeColor = SystemColors.ControlLightLight;
+            labelProjectName.Location = new Point(135, 28);
+            labelProjectName.Name = "labelProjectName";
+            labelProjectName.Size = new Size(242, 51);
+            labelProjectName.TabIndex = 15;
+            labelProjectName.Text = "Sky Wings";
             // 
-            // pictureBox2
+            // pictureBoxIcon
             // 
-            pictureBox2.BackColor = Color.Transparent;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(28, 23);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(101, 97);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 16;
-            pictureBox2.TabStop = false;
-            // 
-            // toolTipMain
-            // 
-            toolTipMain.Popup += toolTipMain_Popup;
+            pictureBoxIcon.BackColor = Color.Transparent;
+            pictureBoxIcon.Image = (Image)resources.GetObject("pictureBoxIcon.Image");
+            pictureBoxIcon.Location = new Point(28, 23);
+            pictureBoxIcon.Name = "pictureBoxIcon";
+            pictureBoxIcon.Size = new Size(101, 97);
+            pictureBoxIcon.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxIcon.TabIndex = 16;
+            pictureBoxIcon.TabStop = false;
             // 
             // logOutBtn
             // 
@@ -461,7 +457,7 @@ namespace Airline
             logOutBtn.UseVisualStyleBackColor = false;
             logOutBtn.Click += logOutBtn_Click;
             // 
-            // Main_Form
+            // MainForm
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoScroll = true;
@@ -470,19 +466,19 @@ namespace Airline
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1377, 770);
             Controls.Add(logOutBtn);
-            Controls.Add(pictureBox2);
-            Controls.Add(label6);
+            Controls.Add(pictureBoxIcon);
+            Controls.Add(labelProjectName);
             Controls.Add(accountLabel);
             Controls.Add(pictureBox1);
             Controls.Add(tabControl1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "Main_Form";
+            Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             tabPageSearchBook.ResumeLayout(false);
             tabPageSearchBook.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numberOfPeople).EndInit();
+            ((System.ComponentModel.ISupportInitialize)freeSeats).EndInit();
             tabInfoPage.ResumeLayout(false);
             tabInfoPage.PerformLayout();
             tabBoardPage.ResumeLayout(false);
@@ -493,7 +489,7 @@ namespace Airline
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxIcon).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -503,9 +499,9 @@ namespace Airline
 
         private TabPage tabPageSearchBook;
         private Button searchButton2;
-        private Label label4;
-        private Label label3;
-        private Label label2;
+        private Label labelFreeSeats;
+        private Label labelDate;
+        private Label labelDestpoint;
         private TabPage tabInfoPage;
         private TabPage tabBoardPage;
         private Button in24button;
@@ -513,19 +509,19 @@ namespace Airline
         private FileSystemWatcher fileSystemWatcher1;
         private FileSystemWatcher fileSystemWatcher2;
         private Label accountLabel;
-        private Label label6;
+        private Label labelProjectName;
         private PictureBox pictureBox1;
         private ImageList imageList1;
-        private PictureBox pictureBox2;
+        private PictureBox pictureBoxIcon;
         private DateTimePicker dtimeSearch;
-        private NumericUpDown numberOfPeople;
+        private NumericUpDown freeSeats;
         private ComboBox destPoint;
         private BindingSource bindingSource1;
         private ToolTip toolTipMain;
         private ComboBox originPoint;
-        private Label label1;
+        private Label labelOriginPoint;
         private Button logOutBtn;
-        private Button createBooking;
+        private Button createBookingButton;
         private Button searchButton1;
         private TextBox flightIdBox;
         private CheckBox checkDate;
@@ -534,6 +530,6 @@ namespace Airline
         private Button cancelBookingButton;
         private TextBox textBoxBookingId;
         private Button activeFlightsButton;
-        private Label label5;
+        private Label labelShowFlights;
     }
 }

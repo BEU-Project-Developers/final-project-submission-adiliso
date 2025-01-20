@@ -1,15 +1,16 @@
 ﻿using Airline.exception;
 using Airline.model.dto.request;
 using Airline.service;
+using static Airline.FormsHelper;
 
 namespace Airline
 {
-    public partial class Main_Form : Form
+    public partial class MainForm : Form
     {
         private readonly FlightService _flightService = new();
         private readonly BookingService _bookingService = new();
 
-        public Main_Form()
+        public MainForm()
         {
             InitializeComponent();
             InitializeCustomTabControl();
@@ -17,13 +18,13 @@ namespace Airline
 
         private void InitializeCustomTabControl()
         {
-            FormsHelper.RoundItems(
+            RoundItems(
             [
                 in24button,
                 myFlightsButton,
                 searchButton1,
                 searchButton2,
-                createBooking,
+                createBookingButton,
                 cancelBookingButton,
                 activeFlightsButton
             ], 30);
@@ -37,7 +38,7 @@ namespace Airline
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += TabControl1_DrawItem;
 
-            if (FormsHelper.CURRENT_PASSENGER != null) accountLabel.Text = FormsHelper.CURRENT_PASSENGER.Username;
+            if (CURRENT_PASSENGER != null) accountLabel.Text = CURRENT_PASSENGER.Username;
         }
 
         private void TabControl1_DrawItem(object sender, DrawItemEventArgs e)
@@ -64,10 +65,6 @@ namespace Airline
             e.Graphics.DrawRectangle(Pens.White, tabRect);
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
         private void Show_cursor(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;
@@ -92,22 +89,9 @@ namespace Airline
             }
         }
 
-        private void fisrt_Tab_Control1_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void in24HoursButton_Click(object sender, EventArgs e)
         {
-            FormsHelper.ShowInfoForm(_flightService.ShowIn24Hours());
-        }
-
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
+            ShowInfoForm(_flightService.ShowIn24Hours());
         }
 
         private void searchButton2_Click(object sender, EventArgs e)
@@ -117,9 +101,9 @@ namespace Airline
                 originPoint.Text,
                 destPoint.Text,
                 DateOnly.FromDateTime(dtimeSearch.Value),
-                (int)numberOfPeople.Value
+                (int)freeSeats.Value
             );
-            FormsHelper.ShowInfoForm(_flightService.SearchFlights(flightSearchRequest, checkDate.Checked));
+            ShowInfoForm(_flightService.SearchFlights(flightSearchRequest, checkDate.Checked));
         }
 
         private void searchButton1_Click(object sender, EventArgs e)
@@ -127,7 +111,7 @@ namespace Airline
             try
             {
                 var id = Convert.ToInt32(flightIdBox.Text);
-                FormsHelper.ShowInfoForm(_flightService.GetById(id));
+                ShowInfoForm(_flightService.GetById(id));
             }
             catch (Exception exception) when (exception is FormatException or NotFoundException)
             {
@@ -135,24 +119,16 @@ namespace Airline
             }
         }
 
-        private void toolTipMain_Popup(object sender, PopupEventArgs e)
-        {
-        }
-
-        private void accountLabel_Click(object sender, EventArgs e)
-        {
-        }
-
         private void logOutBtn_Click(object sender, EventArgs e)
         {
-            FormsHelper.CURRENT_PASSENGER = null;
+            CURRENT_PASSENGER = null;
             ShowLoginForm();
         }
 
         private void ShowLoginForm()
         {
             Hide();
-            var loginForm = new Login_Form();
+            var loginForm = new LoginForm();
             loginForm.FormClosed += (s, args) => Close();
             loginForm.ShowDialog();
         }
@@ -162,9 +138,11 @@ namespace Airline
             try
             {
                 var id = Convert.ToInt32(flightIdBox.Text);
-                FormsHelper.ShowInfoForm([_bookingService.createBooking(id)]);
+                var booking = _bookingService.CreateBooking(id);
                 
                 MessageBox.Show(@"Booking successful");
+                ShowInfoForm([booking]);
+
                 flightIdBox.Text = string.Empty;
             }
             catch (Exception exception) when (exception is FormatException or BadRequestException or NotFoundException)
@@ -181,7 +159,7 @@ namespace Airline
         private void myFlightsButton_Click_1(object sender, EventArgs e)
         {
             _bookingService.UpdateBookingsStatus();
-            FormsHelper.ShowInfoForm(_bookingService.ShowMyBookings());
+            ShowInfoForm(_bookingService.ShowMyBookings());
         }
 
         private void cancelBookingButton_Click(object sender, EventArgs e)
@@ -190,6 +168,8 @@ namespace Airline
             {
                 var id = Convert.ToInt32(textBoxBookingId.Text);
                 _bookingService.CancelBooking(id);
+                
+                textBoxBookingId.Text = string.Empty;
             }
             catch (Exception exception) when (exception is FormatException or BadRequestException or NotFoundException)
             {
@@ -202,7 +182,7 @@ namespace Airline
 
         private void activeFlightsButton_Click(object sender, EventArgs e)
         {
-            FormsHelper.ShowInfoForm(_bookingService.ShowActiveBookings());
+            ShowInfoForm(_bookingService.ShowActiveBookings());
         }
     }
 }

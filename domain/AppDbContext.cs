@@ -11,7 +11,10 @@ namespace Airline.domain
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5436;Database=postgres;Username=postgres;Password=1234;");
+            optionsBuilder.UseNpgsql
+            (
+                "Host=localhost;Port=5436;Database=postgres;Username=postgres;Password=1234;"
+            );
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
